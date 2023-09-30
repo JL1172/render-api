@@ -41,10 +41,10 @@ async function validateId (req,res,next) {
 
 async function validatePost(req,res,next) {
     try {
-        const {occupation,email,address,age,name} = req.body;
-        if (!occupation || !email || !address || !age || !name) {
-            next({status:422, message : "new user must have occupation, name, email, address, and age"})
-        } else {
+        const {occupation,email,address,age,name,salary} = req.body;
+        if (!occupation || !email || !address || !age || !name || !salary) {
+            next({status:422, message : "new user must have occupation, name, email, address, salary, and age"})
+        }  else {
             next(); 
         }
     } catch (err) {next(err)}
