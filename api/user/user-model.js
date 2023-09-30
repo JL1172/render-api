@@ -3,7 +3,7 @@ const { data, genId } = require("../../data/mockDB.js");
 module.exports = {
     async findAll(query) {
         const { limit = 1,limitPerPage = 5,page = 1, sortdir = "asc", sortby = "id" } = query;
-
+        if (page === "all") return data;
         //pagination algo
         const pagination = [];
         for (let i = 0; i < data.length; i+=limitPerPage) {
@@ -37,4 +37,14 @@ module.exports = {
             })
         }
     },
+    async findId(id) {
+        let found = data.find(n => n.id === Number(id))
+        if (!found) return null;
+        return found;
+    },
+    async insert(newUser) {
+        let finalCopy = {...newUser, id : genId()};
+        data.push(finalCopy); 
+        return finalCopy;
+    }
 }
