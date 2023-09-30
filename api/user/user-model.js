@@ -54,8 +54,19 @@ module.exports = {
         return found;
     },
     async insert(newUser) {
-        let finalCopy = { ...newUser, id: genId() };
+        let finalCopy = { ...newUser, id: genId()};
         data.push(finalCopy);
         return finalCopy;
+    },
+    async update(idToUpdate,updatedBody) {
+        const indexToUpdate = data.findIndex(n => n.id === Number(idToUpdate));
+        const completeModified = {...updatedBody, id : Number(idToUpdate)};
+        data.splice(indexToUpdate,1,completeModified);
+        return data;
+    },
+    async remove(idToDelete) {
+        const indexToDelete = data.findIndex(n => n.id === Number(idToDelete));
+        data.splice(indexToDelete,1);
+        return data;
     }
 }

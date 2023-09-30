@@ -29,6 +29,22 @@ router.post("/",validatePost, async(req,res,next)=> {
     }
 })
 //post
+//put
+router.put("/:id",validateId,validatePost, async(req,res,next) => {
+    try {
+        const updatedUser = await UserData.update(req.params.id,req.body);
+        res.status(200).json({message : "updated successfully", data : updatedUser})
+    } catch (err) {next(err)}
+})
+//put
+//delete
+router.delete("/:id",validateId, async(req,res,next)=> {
+    try {
+        const deletedUser = await UserData.remove(req.params.id); 
+        res.status(200).json({message : "user deleted", deletedUser})
+    } catch (err) {next(err)}
+})
+//delete
 
 router.use((error, req, res, next) => {
     res.status(error.status || 500).json({
