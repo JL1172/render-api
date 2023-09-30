@@ -1,12 +1,11 @@
 const express = require("express");
-const helmet = require("helmet");
+
 
 //instantiating server
 const server = express();
 //instantiating server
 
 //global middleware
-server.use(helmet());
 server.use(express.json());
 //global middleware
 
