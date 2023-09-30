@@ -6,7 +6,7 @@ const server = express();
 //instantiating server
 
 //global middleware
-// server.use(helmet());
+server.use(helmet());
 server.use(express.json());
 //global middleware
 
